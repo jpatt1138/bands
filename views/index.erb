@@ -1,0 +1,17 @@
+<h1>Rock and Roll!!!</h1>
+
+<h4>Bands you are folloing</h4>
+
+<% @bands.each do |band| %>
+  <ul>
+    <li>
+      <a href="/band/<%= band.id() %>"><%= band.name() %></a>
+    </li>
+  </ul>
+<% end %>
+
+<form action="/" method="post">
+  <label for="name">Band Name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Let's Rock!</button>
+</form>

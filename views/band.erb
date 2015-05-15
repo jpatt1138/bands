@@ -1,0 +1,28 @@
+<h1><%= @band.name() %></h1>
+
+<h3>Places they've rocked the hizous:</h3>
+
+<% if @venues.any?() %>
+  <% @venues.each do |venue| %>
+    <ul>
+      <li>
+        <%= venue.name() %>
+      </li>
+    </ul>
+  <% end %>
+<% else %>
+  <h4>Looks like they haven't hit the scene yet.</h4>
+<% end %>
+
+
+<form action="/band/<%= @band.id() %>" method="post">
+  <label for="name">Where did you see them play?</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">You Totally Should Have Been There, Bro</button>
+</form>
+
+
+<form action="/band/<%= @band.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete"><br>
+  <button type="submit" class="btn btn-primary btn-md">These Guys Used to be Cool Back in the Day</button>
+</form>
