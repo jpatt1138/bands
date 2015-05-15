@@ -11,8 +11,12 @@ end
 post('/') do
   @bands = Band.all()
   name = params.fetch("name")
-  new_band = Band.create(:name => name)
-  redirect to('/')
+  if name == ""
+    erb(:error)
+  else
+    new_band = Band.create(:name => name.titlecase())
+    redirect to('/')
+  end
 end
 
 get('/band/:id') do
@@ -25,12 +29,16 @@ end
 post('/band/:id') do
   @band = Band.find(params.fetch("id").to_i())
   @venues = @band.venues()
-  names = params.fetch("name")
-  names.each() do |name|
-    new_venue = Venue.create(:name => name)
-    new_venue.bands.push(@band)
+  if params[:name]
+    names = params.fetch("name")
+    names.each() do |name|
+      new_venue = Venue.create(:name => name)
+      new_venue.bands.push(@band)
+    end
+    redirect to("/band/#{@band.id}")
+  else
+    erb(:error)
   end
-  redirect to("/band/#{@band.id}")
 end
 
 delete('/band/:id') do
