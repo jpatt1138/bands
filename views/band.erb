@@ -17,10 +17,15 @@
 
 <form action="/band/<%= @band.id() %>" method="post">
   <label for="name">Where did you see them play?</label>
-  <input id="name" name="name" type="text">
-  <button type="submit">You Totally Should Have Been There, Bro</button>
+  <div id="check_group">
+    <input type="checkbox"  name="name[]" value="Thee Parkside">Thee Parkside</input>
+    <input type="checkbox"  name="name[]" value="The Bottom of the Hill">The Bottom of the Hill</input>
+    <input type="checkbox"  name="name[]" value="Hemlock Tavern">Hemlock Tavern</input>
+    <input type="checkbox"  name="name[]" value="The Filmore">The Filmore</input>
+    <input type="checkbox"  name="name[]" value="The Warfield">The Warfield</input>
+  </div>
+  <button type="submit">You totally should have been there, bro.</button>
 </form>
-
 
 <form action="/band/<%= @band.id() %>" method="post">
   <input name="_method" type="hidden" value="delete"><br>

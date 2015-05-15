@@ -23,11 +23,13 @@ get('/band/:id') do
 end
 
 post('/band/:id') do
-  @venues = Venue.all()
   @band = Band.find(params.fetch("id").to_i())
-  name = params.fetch("name")
-  new_venue = Venue.create(:name => name)
-  new_venue.bands.push(@band)
+  @venues = @band.venues()
+  names = params.fetch("name")
+  names.each() do |name|
+    new_venue = Venue.create(:name => name)
+    new_venue.bands.push(@band)
+  end
   redirect to("/band/#{@band.id}")
 end
 
