@@ -1,5 +1,6 @@
 require('capybara/rspec')
 require('sinatra/activerecord')
+require('shoulda/matchers')
 
 Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
 
