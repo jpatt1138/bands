@@ -11,4 +11,5 @@ group(:test) do
   gem("pry")
   gem('capybara')
   gem("shoulda-matchers")
+  gem("launchy")
 end
