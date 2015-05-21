@@ -38,6 +38,9 @@ post('/band/:id') do
   else
     erb(:error)
   end
+  if params[:new_venue]
+    new_venue = params.fetch("new_venue")
+    
 end
 
 delete('/band/:id') do

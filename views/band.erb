@@ -27,6 +27,13 @@
   <button type="submit">You totally should have been there, bro.</button>
 </form>
 
+<form action="/band<%=band.id()%>" method="post">
+  <label for="new_venue">Is there someplace you've seen them that is too obscure and cool to be on this list?</label>
+  <input id="new_venue" name="new_venue" type="text">
+  <button type="submit">You've probably never heard of it</button>
+</form>
+
+
 <form action="/band/<%= @band.id() %>" method="post">
   <input name="_method" type="hidden" value="delete"><br>
   <button type="submit" class="btn btn-primary btn-md">These Guys Used to be Cool Back in the Day</button>
