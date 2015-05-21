@@ -38,9 +38,9 @@ post('/band/:id') do
   else
     erb(:error)
   end
-  if params[:new_venue]
-    new_venue = params.fetch("new_venue")
-    
+  # if params[:new_venue]
+  #   new_venue = params.fetch("new_venue") <--incomplete thought
+
 end
 
 delete('/band/:id') do
