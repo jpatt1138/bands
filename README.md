@@ -10,6 +10,8 @@ and if you want to test my specs
 
 rake db:test:prepare
 
+A note to my lovely instructors has been added to integration_spec.rb
+
 It was created with much love by Jim Patt.
 
 Please use responsibly.
