@@ -18,32 +18,41 @@ post('/') do
   end
 end
 
-get('/band/:id') do
+get('/bands/:id') do
   @id = params.fetch("id")
   @band = Band.find(params.fetch("id").to_i())
   @venues = @band.venues()
-  erb(:band)
+  erb(:bands)
 end
 
-post('/band/:id') do
+post('/bands/:id') do
   @band = Band.find(params.fetch("id").to_i())
   @venues = @band.venues()
-  if params[:name]
-    names = params.fetch("name")
-    names.each() do |name|
-      new_venue = Venue.create(:name => name)
-      new_venue.bands.push(@band)
+  if params[:name] || params[:new_venue_type] || params[:new_band_name]
+    if params[:name]
+      names = params.fetch("name")
+      names.each() do |name|
+        new_venue = Venue.create(:name => name)
+        new_venue.bands.push(@band)
+      end
     end
-    redirect to("/band/#{@band.id}")
+    if params[:new_venue_type]
+     new_venue_type = params.fetch("new_venue_type")
+     brand_new_venue = Venue.create({:name => new_venue_type})
+     brand_new_venue.bands.push(@band)
+    end
+    if params[:new_band_name]
+      new_band_name = params.fetch("new_band_name")
+      @band.update({:name => new_band_name})
+    end
+      redirect to("/bands/#{@band.id}")
   else
     erb(:error)
   end
-  # if params[:new_venue]
-  #   new_venue = params.fetch("new_venue") <--incomplete thought
 
 end
 
-delete('/band/:id') do
+delete('/bands/:id') do
   @band = Band.find(params.fetch("id").to_i())
   @band.delete()
   @bands = Band.all()

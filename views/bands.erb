@@ -1,0 +1,49 @@
+<h1><%= @band.name() %></h1>
+
+<h3>Places they've rocked the hizouse:</h3>
+
+<% if @venues.any?() %>
+  <% @venues.each do |venue| %>
+    <ul>
+      <li>
+        <%= venue.name() %>
+      </li>
+    </ul>
+  <% end %>
+<% else %>
+  <h4>Looks like they haven't hit the scene yet.</h4>
+<% end %>
+
+
+<form action="/bands/<%= @band.id() %>" method="post">
+  <label for="name">Where did you see them play?</label>
+  <div id="check_group">
+    <input type="checkbox"  name="name[]" value="Thee Parkside">Thee Parkside</input>
+    <input type="checkbox"  name="name[]" value="The Bottom of the Hill">The Bottom of the Hill</input>
+    <input type="checkbox"  name="name[]" value="Hemlock Tavern">Hemlock Tavern</input>
+    <input type="checkbox"  name="name[]" value="The Filmore">The Filmore</input>
+    <input type="checkbox"  name="name[]" value="The Warfield">The Warfield</input>
+  </div>
+  <button type="submit">You totally should have been there, bro.</button>
+</form>
+
+
+<form action="/bands/<%=@band.id()%>" method="post">
+  <label for="new_venue_type">Is there someplace you've seen them that is too obscure and cool to be on this list?</label>
+  <input id="new_venue_type" name="new_venue_type" type="text">
+  <button type="submit">You've probably never heard of it</button>
+</form>
+
+<form action="/bands/<%=@band.id()%>" method="post">
+  <label for="new_band_name">They don't go by that name anymore bro. Now they're called...</label>
+  <input id="new_band" name="new_band_name" type="text">
+  <button type="submit">Get with the program</button>
+</form>
+
+
+<form action="/bands/<%= @band.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete"><br>
+  <button type="submit" class="btn btn-primary btn-md">These Guys Used to be Cool Back in the Day</button>
+</form>
+
+<a href="/">Home</a>
